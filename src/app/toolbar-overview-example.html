@@ -63,16 +63,15 @@
               <ng-template matTabContent>
                 <div class="grid-container">
                   <div class="cell"><mat-slide-toggle color="primary"
-                    [checked]="allSelectedSlide"
-                    (change)="setAllToogle($event.checked)"></mat-slide-toggle></div>
+                    (change)="setAllAisToggle($event.checked)" [checked]="allAisChecked"></mat-slide-toggle></div>
                   <div class="cell">Название</div>
                   <div class="cell">Цвет</div>
-                  <ng-container *ngFor="let item of data1">
+                  <ng-container *ngFor="let item of buttonAisState">
                     <mat-divider style="grid-column: span 3"></mat-divider>
                     <div class="cell center">
                       <mat-slide-toggle color="primary" 
-                      [(ngModel)]="item.completed"
-                      (ngModelChange)="updateAllCompleteToggle()"
+                      [(ngModel)]="item.isChecked"
+                      (ngModelChange)="updateAllAisComplete()"
                       ></mat-slide-toggle>
                     </div>
                     <div class="cell">{{ item.name }}</div>
@@ -82,30 +81,7 @@
                   </ng-container>
                 </div>
 
-                <div class="grid-container">
-                  <div class="cell">
-                    <mat-checkbox color="primary"
-                      [checked]="allComplete"
-                      [indeterminate]="someComplete()"
-                      (change)="setAll($event.checked)"
-                  ></mat-checkbox>
-                  </div>
-                  <div class="cell">Название</div>
-                  <div class="cell">Цвет</div>
-                  <ng-container *ngFor="let item of data">
-                    <mat-divider style="grid-column: span 3"></mat-divider>
-                    <div class="cell center">
-                      <mat-checkbox color="primary"
-                      [(ngModel)]="item.completed"
-                      (ngModelChange)="updateAllComplete()"
-                      ></mat-checkbox>
-                    </div>
-                    <div class="cell">{{ item.name }}</div>
-                    <div class="cell center">
-                      <div class="circle mat-elevation-z4" style="background-color: {{item.color}}"></div>
-                    </div>
-                  </ng-container>
-                </div>
+          
               </ng-template>
             </mat-tab>
             <mat-tab label='palette'>

@@ -19,15 +19,11 @@ export class ToolbarOverviewExample {
   activeName!: string|null;
   selectedTabs: number;
   data = [
-    { name: 'John', color: 'red', completed: false, toggle: true },
-    { name: 'Mary', color: 'orange', completed: false, toggle: false },
-    { name: 'Bob', color: 'blue', completed: false, toggle: true }
+    { name: 'John', color: 'red' },
+    { name: 'Mary', color: 'orange'},
+    { name: 'Bob', color: 'blue'}
   ];
-  data1 = [
-    { name: 'John', color: 'red', completed: false, toggle: true },
-    { name: 'Mary', color: 'orange', completed: false, toggle: false },
-    { name: 'Bob', color: 'blue', completed: false, toggle: true }
-  ];
+
   toggle(sidenavName: string) {
     if (this.activeName === sidenavName && this.sidenav.opened) {
       this.sidenav.close();
@@ -72,26 +68,19 @@ export class ToolbarOverviewExample {
   reset() {
     this.toggles.next([]);
   }
-  allSelectedSlide: boolean = false;
-  allComplete: boolean = false;
+  
+  allAisChecked:boolean = false;
 
-  updateAllComplete() {
-    this.allComplete = this.data.every(t => t.completed);
-  }
-  updateAllCompleteToggle() {
-    this.allSelectedSlide = this.data1.every(t => t.completed);
-  }
-  someComplete(): boolean {
-    return this.data.filter(t => t.completed).length > 0 && !this.allComplete;
-  }
+  buttonAisState = this.data.map(button => {
+    return { ...button, isChecked: false };
+  });
 
-  setAll(completed: boolean) {
-    this.allComplete = completed;
-    this.data.forEach(t => (t.completed = completed));
+  updateAllAisComplete() {
+    this.allAisChecked = this.buttonAisState.every(t => t.isChecked)
   }
-  setAllToogle(completed: boolean) {
-    this.allSelectedSlide = completed;
-    this.data1.forEach(t => (t.completed = completed));
+  setAllAisToggle(completed: boolean) {
+    this.allAisChecked = completed;
+    this.buttonAisState.forEach(t => (t.isChecked = completed));
   }
 }
 
