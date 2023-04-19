@@ -1,0 +1,31 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+$my-primary: mat.define-palette(mat.$indigo-palette, 500);
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$my-theme: mat.define-light-theme((
+	color: (
+		primary: $my-primary,
+		accent: $my-accent,
+	),
+	typography: mat.define-typography-config(),
+	density: -2,
+));
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding: 30px;
+  @include mat.all-component-themes($my-theme);
+}
+html, body {
+  height: 100%;
+}
+
+.hidden .mat-mdc-tab-header {
+  display: none !important;
+}
+
+.mat-mdc-tab-body-content {
+  overflow: hidden;
+}

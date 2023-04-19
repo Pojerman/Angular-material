@@ -1,0 +1,29 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.btn {
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto;
+  align-items: center;
+}
+
+.cell{
+  padding: 6px 8px;
+}
+.circle {
+  display: block;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+}
+.none {
+  border: none;
+}
+.center {
+  display: grid;
+  justify-content: center;
+}
