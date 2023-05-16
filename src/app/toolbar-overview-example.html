@@ -110,6 +110,14 @@
         <mat-tab label="Tab2">123124</mat-tab>
         <mat-tab label="Tab3">3214214214</mat-tab>
       </mat-tab-group>
+      <button (click)="click()">Click ME</button>
+      <div class="" >
+        <h1>Title</h1>
+        <ng-container *ngFor="let post of posts">
+          <div class="">{{post.postInfo.name}}</div>
+          <div class="">{{(infoMap$ | async)?.get(post.postInfo.id)}}</div>
+        </ng-container>
+      </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

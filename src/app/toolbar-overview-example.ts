@@ -1,7 +1,7 @@
 import { Component, ViewChild, QueryList, ViewChildren } from '@angular/core';
 import { MatTabGroup, MatTab } from '@angular/material/tabs';
 import { MatSidenav } from '@angular/material/sidenav';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 /**
  * @title Toolbar overview
  */
@@ -23,6 +23,37 @@ export class ToolbarOverviewExample {
     { name: 'Mary', color: 'orange'},
     { name: 'Bob', color: 'blue'}
   ];
+
+  posts = [
+    { postInfo: { id: 1, name: 'John' }, },
+    { postInfo: { id: 2, name: 'Mary' }, },
+    { postInfo: { id: 3, name: 'Bob' }, },
+  ]
+
+  postsLike = [
+    { postInfo: { id: 1, name: 'John' }, likes: [1, 2, 3]},
+    { postInfo: { id: 2, name: 'Mary' }, likes: [4, 5]},
+  ]
+
+  idPosts = [1, 2, 3, 4]
+
+  info = new Map()
+  infoMap$ = new BehaviorSubject(this.info)
+
+  click() {
+    this.idPosts.forEach(id => {
+      const obj = this.postsLike.find(obj => obj.postInfo.id === id);
+      if(obj) {
+        this.info.set(id, obj.likes.length)
+      } else {
+        this.info.set(id, 0)
+      }
+      this.infoMap$.next(this.info)
+    })
+    console.log(this.info)
+    console.log(this.infoMap$.getValue())
+  }
+
 
   toggle(sidenavName: string) {
     if (this.activeName === sidenavName && this.sidenav.opened) {
